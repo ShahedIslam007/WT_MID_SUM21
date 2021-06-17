@@ -7,10 +7,28 @@
      $err_pass="";
      $email="";
      $err_email="";
-
+     $confirm_pass="";
+     $err_confirm_pass="";
+     $code="";
+     $number="";
+     $err_phone="";
+     $addr="";
+     $err_addr="";
+     $city="";
+     $state="";
+     $err_region="";
+     $zip="";
+     $err_zip="";
+     $gender="";
+     $err_gender="";
+     $checks=[];
+	 $err_checks="";
+	 $bio="";
+	 $err_bio="";
      $day="";
      $month="";
      $year="";
+     $err="";
 
      $hasError=false;
 
@@ -26,12 +44,18 @@
 			$hasError = true;
 		}
 
+		elseif(strlen($_POST["name"])<=6)
+		{
+			$err_name="Please Insert 6 character Name";
+			$hasError = true;
+		}
+
 		else
 		{
 			$name=$_POST["name"];
 		}
 
-		if(empty($_POST["uname"]))
+		if(empty($_POST["username"]))
      	{
 			$err_uname="Username Required";
 			$hasError = true;
@@ -39,20 +63,212 @@
 
 		else
 		{
-			$name=$_POST["uname"];
+			$uname=$_POST["username"];
 		}
 
-		if(empty($_POST["pass"]))
+		if(empty($_POST["password"]))
      	{
-			$err_uname="Password Required";
+			$err_pass="Password Required";
 			$hasError = true;
 		}
 
 		else
 		{
-			$name=$_POST["pass"];
+			$pass=$_POST["password"];
 		}
+
+		if(empty($_POST["confirm_password"]))
+     	{
+			$err_confirm_pass="Confirm Password Required";
+			$hasError = true;
+		}
+
+		else
+		{
+			$confirm_pass=$_POST["confirm_password"];
+		}
+
+		if(empty($_POST["email"]))
+     	{
+			$err_email="Confirm Email";
+			$hasError = true;
+		}
+
+		elseif($_POST["email"]=='@' && $_POST["email"]=='.')
+		{
+			$err_name="Please Insert @ & .(dot)";
+			$hasError = true;
+		}
+
+		else
+		{
+			$email=$_POST["email"];
+		}
+
+		if(empty($_POST["code"]) && empty($_POST["number"]))
+     	{
+			$err_phone="Confirm Code & Number";
+			$hasError = true;
+		}
+
+		elseif (empty($_POST["code"])) 
+		{
+			$err_phone="Confirm Code";
+			$hasError = true;
+		}
+
+		elseif (empty($_POST["number"])) 
+		{
+			$err_phone="Confirm Number";
+			$hasError = true;
+		}
+
+		else
+		{
+			$code=$_POST["code"];
+			$number=$_POST["number"];
+		}
+
+		if(empty($_POST["city"]) && empty($_POST["state"]))
+     	{
+			$err_region="Confirm City & State";
+			$hasError = true;
+		}
+
+		elseif (empty($_POST["city"])) 
+		{
+			$err_region="Confirm City";
+			$hasError = true;
+		}
+
+		elseif (empty($_POST["state"])) 
+		{
+			$err_region="Confirm State";
+			$hasError = true;
+		}
+
+		else
+		{
+			$city=$_POST["city"];
+			$state=$_POST["state"];
+		}
+
+		if(empty($_POST["zip"]))
+     	{
+			$err_zip="Name Required";
+			$hasError = true;
+		}
+
+		else
+		{
+			$zip=$_POST["zip"];
+		}
+
+		if(empty($_POST["address"]))
+     	{
+			$err_addr="Address Required";
+			$hasError = true;
+		}
+
+		else
+		{
+			$addr=$_POST["address"];
+		}
+
+		if(!isset($_POST["Gender"]))
+		{
+			$err_gender="Gender Required";
+			$hasError = true;
+		}
+		else
+		{
+			$gender = $_POST["Gender"];
+		}
+
+		if(!isset($_POST["checks"]))
+		{
+			$err_checks="Required";
+			$hasError = true;
+		}
+		else
+		{
+			$checks = $_POST["checks"];
+		}
+
+		if(empty($_POST["bio"]))
+		{
+			$err_bio="Bio Required";
+			$hasError = true;
+		}
+		else
+		{
+			$bio = $_POST["bio"];
+		}
+
+		if (!isset($_POST["Day"]) && !isset($_POST["Month"]) && !isset($_POST["Year"])) 
+		{
+			$err= "Day, Month & Year Required";
+			$hasError = true;
+		}
+
+		else if(isset($_POST["Day"]))
+		{
+			$err = "Month & Year Required";
+			$hasError = true;
+		}
+
+		else if(isset($_POST["Month"]))
+		{
+			$err = "Day & Year Required";
+			$hasError = true;
+		}
+
+		else if(isset($_POST["Year"]))
+		{
+			$err = "Day & Month Required";
+			$hasError = true;
+		}
+
+		else if (!isset($_POST["Day"]) && !isset($_POST["Month"])) 
+		{
+			$err= "Year Required";
+			$hasError = true;
+		}
+
+		else if (!isset($_POST["Day"]) && !isset($_POST["Year"])) 
+		{
+			$err= "Month Required";
+			$hasError = true;
+		}
+
+		else if (!isset($_POST["Year"]) && !isset($_POST["Month"])) 
+		{
+			$err= "Day Required";
+			$hasError = true;
+		}
+
+		else
+		{
+			$day = $_POST["Day"];
+			$month = $_POST["Month"];
+			$year = $_POST["Year"];
+
+		}
+
      }
+
+     function CheckBox($check)
+     {
+		global $checks;
+		foreach($checks as $c)
+		{
+			if($c == $check)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 ?>
 
 <!DOCTYPE html>
@@ -64,15 +280,15 @@
 <body>
       <h1>Club Member Registration</h1>
 
-      <form action="" method="Post">
+      <form method="Post">
       	    <table>
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Name:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="">
+      	    	   	   	   <input type="text" name="name" value="<?php echo $name;?>">
       	    	   	   </td>
 
       	    	   	   <td>
@@ -80,13 +296,13 @@
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Username:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="">
+      	    	   	   	   <input type="text" name="username" value="<?php echo $uname;?>">
       	    	   	   </td>
 
       	    	   	   <td>
@@ -94,94 +310,118 @@
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Password:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="Password" name="">
+      	    	   	   	   <input type="Password" name="password" value="<?php echo $pass;?>">
       	    	   	   </td>
 
-      	    	   	   
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_pass;?>
+      	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Confirm Password:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="Password" name="">
+      	    	   	   	   <input type="Password" name="confirm_password" value="<?php echo $confirm_pass;?>">
       	    	   	   </td>
 
-      	    	   <tr>
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_confirm_pass;?>
+      	    	   	   </td>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Email:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="">
+      	    	   	   	   <input type="text" name="email" value="<?php echo $email;?>">
+      	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_email;?>
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Phone:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="" placeholder="code"> -
+      	    	   	   	   <input type="text" name="code" placeholder="code" value="<?php echo $code;?>"> -
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="" placeholder="Number">
+      	    	   	   	   <input type="text" name="number" placeholder="Number" value="<?php echo $number;?>">
+      	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_phone;?>
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Address:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="" placeholder="Select Address">
+      	    	   	   	   <input type="text" name="address" placeholder="Select Address" value="<?php echo $addr;?>">
+      	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_addr;?>
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	    
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="" placeholder="City"> -
+      	    	   	   	   <input type="text" name="city" placeholder="City" value="<?php echo $city;?>"> -
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="" placeholder="State">
+      	    	   	   	   <input type="text" name="state" placeholder="State" value="<?php echo $state;?>">
+      	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_region;?>
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	    
       	    	   	   </td>
       	    	   	   
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="" placeholder="Postal/Zip Code">
+      	    	   	   	   <input type="text" name="zip" placeholder="Postal/Zip Code" value="<?php echo $zip;?>">
+      	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_zip;?>
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Birth Date:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <select>
+      	    	   	   	   <select name="Day">
       	    	   	   	   	       <option selected="Day" disabled="Day">Day</option>
 
       	    	   	   	   	       <?php
@@ -195,15 +435,16 @@
 											   echo "<option>$dy</option>";
                                         }
       	    	   	   	   	       ?>
+      	    	   	   	   	       echo $day;
       	    	   	   	   </select>
 
-      	    	   	   	   <select>
+      	    	   	   	   <select name="Month">
       	    	   	   	   	       <option selected="Month" disabled="Month">Month</option>
 
       	    	   	   	   	       <?php
                                         foreach ($Months as $my) 
                                         {
-                                        	if ($Months==$my) 
+                                        	if ($month==$my) 
                                         	{
                                         		echo "<option selected>$my</option>";
                                         	}
@@ -213,13 +454,13 @@
       	    	   	   	   	       ?>
       	    	   	   	   </select>
 
-      	    	   	   	   <select>
+      	    	   	   	   <select name="Year">
       	    	   	   	   	       <option selected="Year" disabled="Year">Year</option>
 
       	    	   	   	   	       <?php
                                         foreach ($Years as $yy) 
                                         {
-                                        	if ($Years==$yy) 
+                                        	if ($year==$yy) 
                                         	{
                                         		echo "<option selected>$yy</option>";
                                         	}
@@ -229,47 +470,61 @@
       	    	   	   	   	       ?>
       	    	   	   	   </select>
       	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   		<?php echo $err;?>	
+      	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Gender:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="radio" name="Gender"> Male <input type="radio" name="Gender"> Female
+      	    	   	   	   <input type="radio" value="Male" <?php if($gender == "Male") echo "checked";?> name="Gender"> Male <input type="radio" value="Female" <?php if($gender == "Female") echo "checked";?> name="Gender"> Female
+      	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   		<?php echo $err_gender;?>	
       	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	
       	    	   	   </td>
-
-      	    	   	   <td>
-      	    	   	   	   <input type="checkbox" name=""> A Friend or College
-      	    	   	   </td>
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Where did you hear<br> about us?
       	    	   	   </td>
 
-      	    	   	   <td>
-      	    	   	   	   <input type="checkbox" name=""> Google
-      	    	   	   	   <input type="checkbox" name=""> Blog Post
-      	    	   	   	   <input type="checkbox" name=""> News Article
+      	    	   	   <td align="center" >
+      	    	   	   	   <input type="checkbox" name="checks[]" value="1" <?php if(CheckBox(1)) echo "checked";?>> A Friend or College<br>
+      	    	   	   	   <input align="center" type="checkbox" name="checks[]checks[]checks[]" value="2" <?php if(CheckBox(2)) echo "checked";?>> Google<br>
+      	    	   	   	   <input type="checkbox" name="checks[]checks[]" value="3" <?php if(CheckBox(3)) echo "checked";?>> Blog Post<br>
+      	    	   	   	   <input type="checkbox" name="checks[]" value="4" <?php if(CheckBox(4)) echo "checked";?>> News Article
       	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_checks;?>
+      	    	   	   </td>
+
       	    	   </tr>
 
-      	    	   <tr>
+      	    	   <tr align="right">
       	    	   	   <td>
       	    	   	   	   Bio:
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <textarea cols="33" rows="5"></textarea>
+      	    	   	   	   <textarea cols="33" rows="5" name="bio"><?php echo $bio;?></textarea>
+      	    	   	   </td>
+
+      	    	   	   <td>
+      	    	   	   	   <?php echo $err_bio;?>
       	    	   	   </td>
       	    	   </tr>
 
