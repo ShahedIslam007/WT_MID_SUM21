@@ -44,9 +44,9 @@
 			$hasError = true;
 		}
 
-		elseif(strlen($_POST["name"])<=6)
+		elseif(strlen($_POST["name"])<=6)   //Name validation
 		{
-			$err_name="Please Insert 6 character Name";
+			$err_name="Name shold be more than 6 character";
 			$hasError = true;
 		}
 
@@ -72,6 +72,12 @@
 			$hasError = true;
 		}
 
+		elseif (strlen($_POST["password"])<=8 && !is_numeric($_POST["password"]) && !ctype_upper($_POST["password"]) && !ctype_lower($_POST["password"]) )  //Password Validation
+	    {
+			$err_pass="Required";
+			$hasError = true;
+		}
+
 		else
 		{
 			$pass=$_POST["password"];
@@ -83,6 +89,12 @@
 			$hasError = true;
 		}
 
+		elseif ($_POST["password"]!=$_POST["confirm_password"])  //Confirm password validation
+	    {
+			$err_confirm_pass="Password does not Matched";
+			$hasError = true;
+		}
+
 		else
 		{
 			$confirm_pass=$_POST["confirm_password"];
@@ -91,12 +103,6 @@
 		if(empty($_POST["email"]))
      	{
 			$err_email="Confirm Email";
-			$hasError = true;
-		}
-
-		elseif($_POST["email"]=='@' && $_POST["email"]=='.')
-		{
-			$err_name="Please Insert @ & .(dot)";
 			$hasError = true;
 		}
 
@@ -114,6 +120,12 @@
 		elseif (empty($_POST["code"])) 
 		{
 			$err_phone="Confirm Code";
+			$hasError = true;
+		}
+
+		elseif (!is_numeric($_POST["code"]) && !is_numeric($_POST["number"])) //Phone Number validation
+		{
+			$err_phone="Numeric Value Recuired";
 			$hasError = true;
 		}
 
@@ -187,7 +199,7 @@
 
 		if(!isset($_POST["checks"]))
 		{
-			$err_checks="Required";
+			$err_checks="Required tick";
 			$hasError = true;
 		}
 		else
