@@ -38,15 +38,9 @@
 
      if ($_SERVER["REQUEST_METHOD"] == "POST") 
      {
-     	if(empty($_POST["name"]))
+     	if(empty($_POST["name"]))  //Name Validation
      	{
 			$err_name="Name Required";
-			$hasError = true;
-		}
-
-		elseif(strlen($_POST["name"])<=6)   //Name validation
-		{
-			$err_name="Name shold be more than 6 character";
 			$hasError = true;
 		}
 
@@ -55,9 +49,21 @@
 			$name=$_POST["name"];
 		}
 
-		if(empty($_POST["username"]))
+		if(empty($_POST["username"]))   //Username Validation
      	{
 			$err_uname="Username Required";
+			$hasError = true;
+		}
+
+		elseif(strlen($_POST["username"])<=6) 
+		{
+			$err_uname="Username shold be more than 6 character";
+			$hasError = true;
+		}
+
+		elseif(strpos($_POST["username"]," "))
+		{
+            $err_uname="Username shold not have any space";
 			$hasError = true;
 		}
 
@@ -66,13 +72,13 @@
 			$uname=$_POST["username"];
 		}
 
-		if(empty($_POST["password"]))
+		if(empty($_POST["password"]))   //Password Validation
      	{
 			$err_pass="Password Required";
 			$hasError = true;
 		}
 
-		elseif (strlen($_POST["password"])<=8 && !is_numeric($_POST["password"]) && !ctype_upper($_POST["password"]) && !ctype_lower($_POST["password"]) )  //Password Validation
+		elseif (strlen($_POST["password"])<=8 && !is_numeric($_POST["password"]) && !ctype_upper($_POST["password"]) && !ctype_lower($_POST["password"]) && (!strpos($_POST["email"],'#') && !strpos($_POST["email"],'?')))  
 	    {
 			$err_pass="Required";
 			$hasError = true;
@@ -83,13 +89,13 @@
 			$pass=$_POST["password"];
 		}
 
-		if(empty($_POST["confirm_password"]))
+		if(empty($_POST["confirm_password"]))    //Confirm password validation
      	{
 			$err_confirm_pass="Confirm Password Required";
 			$hasError = true;
 		}
 
-		elseif ($_POST["password"]!=$_POST["confirm_password"])  //Confirm password validation
+		elseif ($_POST["password"]!=$_POST["confirm_password"])  
 	    {
 			$err_confirm_pass="Password does not Matched";
 			$hasError = true;
@@ -100,10 +106,33 @@
 			$confirm_pass=$_POST["confirm_password"];
 		}
 
-		if(empty($_POST["email"]))
+		if(empty($_POST["email"]))      //Email validation
      	{
-			$err_email="Confirm Email";
+			$err_email="Email Required";
 			$hasError = true;
+		}
+
+		elseif(!strpos($_POST["email"],'@') && !strpos($_POST["email"],'.'))
+		{
+             $err_email="First use @ and then .(dot)";
+			 $hasError = true;
+		}
+
+		elseif (strpos($_POST["email"],'@') ) 
+		{
+			if (strpos($_POST["email"],'.')) 
+			{
+				$email=$_POST["email"];
+			}
+		}
+
+		elseif(strpos($_POST["email"],'.'))
+		{
+			if (!strpos($_POST["email"],'@') || strpos($_POST["email"],'@')) 
+			{
+				$err_email="First use @ and then .(dot)";
+			    $hasError = true;
+			}
 		}
 
 		else
@@ -111,61 +140,77 @@
 			$email=$_POST["email"];
 		}
 
-		if(empty($_POST["code"]) && empty($_POST["number"]))
+		if(empty($_POST["code"]) && empty($_POST["number"]))   //Phone Number validation
      	{
-			$err_phone="Confirm Code & Number";
+			$err_phone="Code & Number Recuired";
 			$hasError = true;
 		}
 
-		elseif (empty($_POST["code"])) 
-		{
-			$err_phone="Confirm Code";
-			$hasError = true;
-		}
-
-		elseif (!is_numeric($_POST["code"]) && !is_numeric($_POST["number"])) //Phone Number validation
+		elseif (!is_numeric($_POST["code"]) || !is_numeric($_POST["number"])) 
 		{
 			$err_phone="Numeric Value Recuired";
 			$hasError = true;
 		}
 
-		elseif (empty($_POST["number"])) 
+		elseif (!empty($_POST["code"])) 
 		{
-			$err_phone="Confirm Number";
-			$hasError = true;
+			if(!empty($_POST["number"]))
+			{
+				$code=$_POST["code"];
+				$number=$_POST["number"];
+			}
+
+			else if(empty($_POST["number"]))
+			{
+				$err_phone="Number Required";
+			    $hasError = true;
+			    $code=$_POST["code"];
+			}
 		}
 
-		else
+		elseif (!empty($_POST["number"])) 
 		{
-			$code=$_POST["code"];
-			$number=$_POST["number"];
+			if(empty($_POST["code"]))
+			{
+				$err_phone="Code Recuired";
+			    $hasError = true;
+			    $number=$_POST["number"];
+			}
 		}
 
-		if(empty($_POST["city"]) && empty($_POST["state"]))
+		if(empty($_POST["city"]) && empty($_POST["state"]))      //City & State Validation
      	{
 			$err_region="Confirm City & State";
 			$hasError = true;
 		}
 
-		elseif (empty($_POST["city"])) 
+		elseif (!empty($_POST["city"])) 
 		{
-			$err_region="Confirm City";
-			$hasError = true;
+			if(!empty($_POST["state"]))
+			{
+				$city=$_POST["city"];
+				$state=$_POST["state"];
+			}
+
+			else if(empty($_POST["state"]))
+			{
+				$err_region="State Required";
+			    $hasError = true;
+			    $city=$_POST["city"];
+			}
 		}
 
-		elseif (empty($_POST["state"])) 
+		elseif (!empty($_POST["state"])) 
 		{
-			$err_region="Confirm State";
-			$hasError = true;
+			if(empty($_POST["city"]))
+			{
+				$err_region="City Recuired";
+			    $hasError = true;
+			    $state=$_POST["state"];
+			}
 		}
 
-		else
-		{
-			$city=$_POST["city"];
-			$state=$_POST["state"];
-		}
-
-		if(empty($_POST["zip"]))
+		if(empty($_POST["zip"]))       // Zip Validation
      	{
 			$err_zip="Name Required";
 			$hasError = true;
@@ -176,7 +221,7 @@
 			$zip=$_POST["zip"];
 		}
 
-		if(empty($_POST["address"]))
+		if(empty($_POST["address"]))    // Address Validation
      	{
 			$err_addr="Address Required";
 			$hasError = true;
@@ -187,7 +232,7 @@
 			$addr=$_POST["address"];
 		}
 
-		if(!isset($_POST["Gender"]))
+		if(!isset($_POST["Gender"]))   //Gender Validation
 		{
 			$err_gender="Gender Required";
 			$hasError = true;
@@ -197,7 +242,7 @@
 			$gender = $_POST["Gender"];
 		}
 
-		if(!isset($_POST["checks"]))
+		if(!isset($_POST["checks"]))   //Check Box Validation
 		{
 			$err_checks="Required tick";
 			$hasError = true;
@@ -207,7 +252,7 @@
 			$checks = $_POST["checks"];
 		}
 
-		if(empty($_POST["bio"]))
+		if(empty($_POST["bio"]))     //Bio Validation
 		{
 			$err_bio="Bio Required";
 			$hasError = true;
@@ -217,54 +262,92 @@
 			$bio = $_POST["bio"];
 		}
 
-		if (!isset($_POST["Day"]) && !isset($_POST["Month"]) && !isset($_POST["Year"])) 
+		if (!isset($_POST["Day"]) && !isset($_POST["Month"]) && !isset($_POST["Year"]))  //Date, Month & Year Validation
 		{
 			$err= "Day, Month & Year Required";
 			$hasError = true;
 		}
 
-		else if(isset($_POST["Day"]))
-		{
-			$err = "Month & Year Required";
-			$hasError = true;
-		}
-
-		else if(isset($_POST["Month"]))
-		{
-			$err = "Day & Year Required";
-			$hasError = true;
-		}
-
-		else if(isset($_POST["Year"]))
-		{
-			$err = "Day & Month Required";
-			$hasError = true;
-		}
-
-		else if (!isset($_POST["Day"]) && !isset($_POST["Month"])) 
-		{
-			$err= "Year Required";
-			$hasError = true;
-		}
-
-		else if (!isset($_POST["Day"]) && !isset($_POST["Year"])) 
-		{
-			$err= "Month Required";
-			$hasError = true;
-		}
-
-		else if (!isset($_POST["Year"]) && !isset($_POST["Month"])) 
-		{
-			$err= "Day Required";
-			$hasError = true;
-		}
-
-		else
+		else if(isset($_POST["Day"]) && isset($_POST["Month"]) && isset($_POST["Year"]))
 		{
 			$day = $_POST["Day"];
 			$month = $_POST["Month"];
 			$year = $_POST["Year"];
+		}
 
+		elseif (!isset($_POST["Day"])) 
+		{
+			if(isset($_POST["Month"]) && isset($_POST["Year"]))
+			{
+				$err= "Day Required";
+			    $hasError = true;
+			    $month = $_POST["Month"];
+			    $year = $_POST["Year"];
+			}
+
+			elseif(isset($_POST["Month"]))
+			{
+                $err= "Day & Year Required";
+			    $hasError = true;
+			    $month = $_POST["Month"];
+			}
+
+			elseif(isset($_POST["Year"]))
+			{
+                $err= "Day & Month Required";
+			    $hasError = true;
+			    $year = $_POST["Year"];
+			}
+		}
+
+		elseif (!isset($_POST["Month"])) 
+		{
+			if(isset($_POST["Day"]) && isset($_POST["Year"]))
+			{
+				$err= "Month Required";
+			    $hasError = true;
+			    $day = $_POST["Day"];
+			    $year = $_POST["Year"];
+			}
+
+			elseif(isset($_POST["Day"]))
+			{
+                $err= "Month & Year Required";
+			    $hasError = true;
+			    $day = $_POST["Day"];
+			}
+
+			elseif(isset($_POST["Year"]))
+			{
+                $err= "Day & Month Required";
+			    $hasError = true;
+			    $year = $_POST["Year"];
+			}
+		}
+
+		elseif (!isset($_POST["Year"])) 
+		{
+			if(isset($_POST["Day"]) && isset($_POST["Month"]))
+			{
+				$err= "Year Required";
+			    $hasError = true;
+			    $day = $_POST["Day"];
+			    $month = $_POST["Month"];
+			}
+
+			elseif(isset($_POST["Day"]))
+			{
+                $err= "Month & Year Required";
+			    $hasError = true;
+			    $day = $_POST["Day"];
+			}
+
+			elseif(isset($_POST["Month"]))
+			{
+                $err= "Day & Year Required";
+			    $hasError = true;
+			    $month = $_POST["Month"];
+			}
 		}
 
      }
