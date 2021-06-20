@@ -146,7 +146,7 @@
 			$hasError = true;
 		}
 
-		elseif (!is_numeric($_POST["code"]) || !is_numeric($_POST["number"])) 
+		elseif (!is_numeric($_POST["code"]) && !is_numeric($_POST["number"])) 
 		{
 			$err_phone="Numeric Value Recuired";
 			$hasError = true;
@@ -212,7 +212,7 @@
 
 		if(empty($_POST["zip"]))       // Zip Validation
      	{
-			$err_zip="Name Required";
+			$err_zip="Zip/Postal Required";
 			$hasError = true;
 		}
 
