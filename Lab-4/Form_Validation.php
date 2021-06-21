@@ -78,7 +78,7 @@
 			$hasError = true;
 		}
 
-		elseif (strlen($_POST["password"])<=8 && !is_numeric($_POST["password"]) && !ctype_upper($_POST["password"]) && !ctype_lower($_POST["password"]) && (!strpos($_POST["email"],'#') && !strpos($_POST["email"],'?')))  
+		elseif (strlen($_POST["password"])<=8 && !is_numeric($_POST["password"]) && !ctype_upper($_POST["password"]) && !ctype_lower($_POST["password"]) && (!strpos($_POST["email"],'#') || !strpos($_POST["email"],'?')))  
 	    {
 			$err_pass="Required";
 			$hasError = true;
