@@ -484,11 +484,11 @@
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="city" placeholder="City" value="<?php echo $city;?>"> -
+      	    	   	   	   <input type="text" placeholder="City" name="city"  value="<?php echo $city;?>"> -
       	    	   	   </td>
 
       	    	   	   <td>
-      	    	   	   	   <input type="text" name="state" placeholder="State" value="<?php echo $state;?>">
+      	    	   	   	   <input type="text" placeholder="State"  name="state" value="<?php echo $state;?>">
       	    	   	   </td>
 
       	    	   	   <td>
