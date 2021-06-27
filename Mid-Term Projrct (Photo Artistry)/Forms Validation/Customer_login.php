@@ -73,13 +73,16 @@
 		}
 	}
 ?>
+
+
+
 <html>
 <head>
 	
-	<title>Admin Login</title>
+	<title>Customer Login</title>
 </head>
 <body>
-      <h3>Admin</h3>
+      <h3>Customer</h3>
 
       <form method="Post" action="">
       	    <table>

@@ -76,10 +76,10 @@
 <html>
 <head>
 	
-	<title>Admin Login</title>
+	<title>Photographer Login</title>
 </head>
 <body>
-      <h3>Admin</h3>
+      <h3>Photographer</h3>
 
       <form method="Post" action="">
       	    <table>
