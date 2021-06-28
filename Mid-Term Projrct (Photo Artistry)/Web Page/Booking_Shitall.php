@@ -26,7 +26,6 @@
       	   <a href="Validation/Adventure Photographer.php"><button>Adventure Photographer</button></a>&nbsp;&nbsp;&nbsp;
       	   <a href="Validation/Event_Photographer.php"><button>Event Photographer</button></a>&nbsp;&nbsp;&nbsp;
       	   <a href="Validation/Fashion_Photographer.php"><button>Fashion Photographer</button></a>&nbsp;&nbsp;&nbsp;
-      	   <a href="Validation/Film_Photographer.php"><button>Film Photographer</button></a>&nbsp;&nbsp;&nbsp;
       	   <a href="Validation/Wedding_Photographer.php"><button>Weeding Photographer</button></a>
       </h1>
 </body>

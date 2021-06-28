@@ -31,10 +31,10 @@
           <img src="1.jpg" height="400" width="400" vspace="20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </a>
       <a href="Clinton.php" target="next">
-          <img src="2.jpg" height="400" width="400" vspace="20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src="43.jpg" height="400" width="400" vspace="20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </a>
       <a href="Chapal.php" target="next">
-          <img src="3.jpg" height="400" width="400" vspace="20">
+          <img src="57.jpg" height="400" width="400" vspace="20">
       </a>
           
       <br><br>

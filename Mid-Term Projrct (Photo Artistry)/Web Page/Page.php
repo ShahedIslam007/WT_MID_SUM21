@@ -25,8 +25,8 @@
       <br><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <img src="1.jpg" height="400" width="400" vspace="20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <img src="2.jpg" height="400" width="400" vspace="20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <img src="3.jpg" height="400" width="400" vspace="20">
+      <img src="43.jpg" height="400" width="400" vspace="20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img src="57.jpg" height="400" width="400" vspace="20">
 
       <br><br>
       <font face="Verdana" size="5" color="red">Adventure Photography</font>
