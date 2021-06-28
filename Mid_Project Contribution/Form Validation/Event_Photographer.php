@@ -4,7 +4,6 @@
      $err_name="";
      $email="";
      $err_email="";
-     $code="";
      $number="";
      $err_phone="";
      $addr="";
@@ -36,6 +35,12 @@
      	if (empty($_POST["fname"]) && empty($_POST["lname"]))   //Name Validation
      	{
      		$err_name="First Name & Last Name Required";
+			$hasError = true;
+     	}
+
+     	elseif(is_numeric($_POST["fname"]) || is_numeric($_POST["lname"]))  ///////////////////////
+     	{
+     		$err_name="First Name & Last Name Should not be Start With Numeric";
 			$hasError = true;
      	}
 
@@ -77,6 +82,12 @@
 			$hasError = true;
 		}
 
+		elseif(is_numeric($_POST["email"]))  ///////////////////////
+     	{
+     		$err_email="Email Should not be Start With Numeric";
+			$hasError = true;
+     	}
+
 		elseif(strpos($_POST["email"],'@') && strpos($_POST["email"],'.'))
 		{
 			$email=$_POST["email"];
@@ -117,83 +128,23 @@
 			}
 		}
 
-		/*if (isset($_POST['upload']))
-		{
-			$file_name= $_FILES['file'] ['name'];
-			$file_type= $_FILES['file'] ['type'];
-			$file_size= $_FILES['file'] ['size'];
-			$file_temp_loc= $_FILES['file'] ['tmp_name'];
-			$file_store= "Uploaded File/" .$file_name;
 
-			move_uploaded_file($file_temp_loc, $file_store);	
-
-			if (isset($_POST['file'])) 
-            {
-            	$file_stored=$_POST["file"];
-            }
-		}*/
-
-		if(empty($_POST["code"]) && empty($_POST["number"]))   //Phone Number validation
+		if(empty($_POST["number"]))   //Phone Number validation
      	{
-			$err_phone="Code & Number Recuired";
+			$err_phone="Number Recuired";
 			$hasError = true;
 		}
 
-		elseif (!is_numeric($_POST["code"]) && !is_numeric($_POST["number"])) 
-		{
-			$err_phone="Code & Number Must Have to be Numeric";
+        elseif(!is_numeric($_POST["number"]))
+        {
+            $err_phone="Number Has to be Numeric";
 			$hasError = true;
-		}
+        }
 
-		elseif (!empty($_POST["number"])) 
-		{
-			if(!is_numeric($_POST["number"]))
-			{
-				if(is_numeric($_POST["code"]))
-				{
-					$err_phone="Number Must Have to be Numeric";
-			        $hasError = true;
-			        $code=$_POST["code"];
-				}
-
-				if(!is_numeric($_POST["code"]))
-				{
-					$err_phone="Code Must Have to be Numeric";
-			        $hasError = true;
-			        $number=$_POST["number"];
-				}
-				
-			} 
-
-			elseif(empty($_POST["code"]))
-			{
-				$err_phone="Code Recuired";
-			    $hasError = true;
-			    $number=$_POST["number"];
-			}
-
-			else
-		    {
-				$code=$_POST["code"];
-				$number=$_POST["number"];
-			}
-		}
-
-		elseif (!empty($_POST["code"])) 
-		{
-			if(empty($_POST["number"]))
-			{
-				$err_phone="Number Required";
-			    $hasError = true;
-			    $code=$_POST["code"];
-			}
-
-			else
-		    {
-				$code=$_POST["code"];
-				$number=$_POST["number"];
-			}
-		}
+        else
+        {
+        	$number=$_POST["number"];
+        }
 
 		if(empty($_POST["address"]))    // Client Address Validation
      	{
@@ -314,12 +265,17 @@
 		{
 			$addr2=$_POST["address2"];
 		}
-
-		if(empty($_POST["city"]) && empty($_POST["state"]))      //City & State Validation
+if(empty($_POST["city"]) && empty($_POST["state"]))      //City & State Validation
      	{
 			$err_region="City & State Required";
 			$hasError = true;
 		}
+
+		elseif(is_numeric($_POST["city"]) || is_numeric($_POST["state"]))  ///////////////////////
+     	{
+     		$err_region="City & State Should not be Start With Numeric";
+			$hasError = true;
+     	}
 
 		elseif (!empty($_POST["city"])) 
 		{
@@ -350,6 +306,12 @@
 		if(empty($_POST["zip"]))       // Zip Validation
      	{
 			$err_zip="Zip/Postal Required";
+			$hasError = true;
+		}
+
+		elseif(!is_numeric($_POST["zip"])) 
+		{
+			$err_zip="Zip/Postal Has to be Numeric";
 			$hasError = true;
 		}
 
@@ -437,8 +399,10 @@
 
                    <tr>
                        <td>
-      	    	   	   	   <input type="text" name="code" size="3" placeholder="code" value="<?php echo $code;?>"> -
-      	    	   	   	   <input type="text" name="number" size="21" placeholder="Number" value="<?php echo $number;?>">
+      	    	   	   	   <select>
+      	    	   	   	   	       <option selected="+88" disabled="+88">+88</option>
+      	    	   	   	   </select> -
+      	    	   	   	   <input type="text" name="number" size="23" placeholder="Number" value="<?php echo $number;?>">
       	    	   	   </td>
 
       	    	   	   <td>
