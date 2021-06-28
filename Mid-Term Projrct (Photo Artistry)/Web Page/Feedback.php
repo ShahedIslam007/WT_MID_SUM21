@@ -24,7 +24,7 @@
       	   <font face="Comic sans MS" size="7" color="#cc6600">Give Your Valuable Feedback!!</font><br><br>
       	   <a href="Validation/Photographer Feedback.php"><button>Photographer Feedback</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       	   <a href="Validation/Course Feedback.php"><button>Course Feedback</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      	   <a href="Validation/Website Rating.php"><button>Website Feedback</button></a>
+      	   <a href="Validation/Website Feedback.php"><button>Website Feedback</button></a>
       	</h1>
 </body>
 </html>
