@@ -99,9 +99,16 @@
 			 $hasError = true;
 		}
 
-		elseif(!strpos($_POST["email"],'@'))
+
+		elseif(strpos($_POST["email"],'.'))
 		{
-			if(strpos($_POST["email"],'.'))
+			if(strpos($_POST["email"],'@'))
+			{
+                $err_email="First use @ and then .(dot)";
+		        $hasError = true;
+			}
+
+			elseif(strpos($_POST["email"],'.'))
 			{
 				$err_email="First use @ and then .(dot)";
 		        $hasError = true;
@@ -114,17 +121,12 @@
 			}
 		}
 
-		elseif (strpos($_POST["email"],'@') ) 
+		elseif(strpos($_POST["email"],'@'))
 		{
-			if (strpos($_POST["email"],'.')) 
+            if(!strpos($_POST["email"],'.'))
 			{
-			    $email=$_POST["email"];
-			}
-
-			elseif (!strpos($_POST["email"],'.') || strpos($_POST["email"],'@'))
-			{
-				$err_email="First use @ and then .(dot)";
-			    $hasError = true;
+                $err_email="First use @ and then .(dot)";
+		        $hasError = true;
 			}
 		}
 

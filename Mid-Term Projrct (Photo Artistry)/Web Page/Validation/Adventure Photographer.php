@@ -38,7 +38,7 @@
 			$hasError = true;
      	}
 
-     	elseif(is_numeric($_POST["fname"]) || is_numeric($_POST["lname"]))  ///////////////////////
+     	elseif(is_numeric($_POST["fname"]) || is_numeric($_POST["lname"]))  
      	{
      		$err_name="First Name & Last Name Should not be Start With Numeric";
 			$hasError = true;
@@ -82,7 +82,7 @@
 			$hasError = true;
 		}
 
-		elseif(is_numeric($_POST["email"]))  ///////////////////////
+		elseif(is_numeric($_POST["email"]))  
      	{
      		$err_email="Email Should not be Start With Numeric";
 			$hasError = true;
@@ -99,9 +99,16 @@
 			 $hasError = true;
 		}
 
-		elseif(!strpos($_POST["email"],'@'))
+
+		elseif(strpos($_POST["email"],'.'))
 		{
-			if(strpos($_POST["email"],'.'))
+			if(strpos($_POST["email"],'@'))
+			{
+                $err_email="First use @ and then .(dot)";
+		        $hasError = true;
+			}
+
+			elseif(strpos($_POST["email"],'.'))
 			{
 				$err_email="First use @ and then .(dot)";
 		        $hasError = true;
@@ -114,19 +121,15 @@
 			}
 		}
 
-		elseif (strpos($_POST["email"],'@') ) 
+		elseif(strpos($_POST["email"],'@'))
 		{
-			if (strpos($_POST["email"],'.')) 
+            if(!strpos($_POST["email"],'.'))
 			{
-			    $email=$_POST["email"];
-			}
-
-			elseif (!strpos($_POST["email"],'.') || strpos($_POST["email"],'@'))
-			{
-				$err_email="First use @ and then .(dot)";
-			    $hasError = true;
+                $err_email="First use @ and then .(dot)";
+		        $hasError = true;
 			}
 		}
+
 
 		if(empty($_POST["number"]))   //Phone Number validation
      	{
@@ -271,7 +274,7 @@
 			$hasError = true;
 		}
 
-		elseif(is_numeric($_POST["city"]) || is_numeric($_POST["state"]))  ///////////////////////
+		elseif(is_numeric($_POST["city"]) || is_numeric($_POST["state"]))  
      	{
      		$err_region="City & State Should not be Start With Numeric";
 			$hasError = true;
@@ -309,7 +312,7 @@
 			$hasError = true;
 		}
 
-		elseif(!is_numeric($_POST["zip"]))  //////////////
+		elseif(!is_numeric($_POST["zip"]))  
 		{
 			$err_zip="Zip/Postal Has to be Numeric";
 			$hasError = true;
