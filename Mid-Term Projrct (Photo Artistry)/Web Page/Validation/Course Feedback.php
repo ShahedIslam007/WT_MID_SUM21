@@ -121,7 +121,7 @@
      </head>
 
        <body>
-                    <form action="" method="post">
+                    <form action="Submit.php" method="post">
                     <table align="center">
                              <tr>
                                <td  align="center">

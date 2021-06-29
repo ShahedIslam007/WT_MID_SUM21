@@ -84,7 +84,7 @@
 <body>
       <h3>Customer</h3>
 
-      <form method="Post" action="">
+      <form method="Post" action="Submit.php">
       	    <table>
       	    	   <tr>
 				       <td>

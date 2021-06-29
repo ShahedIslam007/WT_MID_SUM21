@@ -133,7 +133,7 @@
 </head>
 <body>
       <h1>Post</h1><br>
-      <form action=""  method="Post">
+      <form action="Submit.php"  method="Post">
             <table>
                    <tr>
                        <td>

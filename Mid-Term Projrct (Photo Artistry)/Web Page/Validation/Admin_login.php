@@ -81,7 +81,7 @@
 <body>
       <h3>Admin</h3>
 
-      <form method="Post" action="">
+      <form method="Post" action="Submit.php">
       	    <table>
       	    	   <tr>
 				       <td>

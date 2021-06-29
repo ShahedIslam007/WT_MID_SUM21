@@ -381,7 +381,7 @@
 <body>
       <h1>Photographer Hire Form</h1><br>
 
-      <form action="" method="post">
+      <form action="Submit.php" method="post">
       	    <table>
       	    	   <tr>
       	    	   	   <td>

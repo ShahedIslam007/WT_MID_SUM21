@@ -343,7 +343,7 @@
 </head>
 <body>
       <h1>Adventure Photographer Booking Form</h1><br>
-      <form method="Post" action="?" enctype="multipart/form-data">
+      <form method="Post" action="Submit.php">
             <table>
                    <tr>
                        <td>

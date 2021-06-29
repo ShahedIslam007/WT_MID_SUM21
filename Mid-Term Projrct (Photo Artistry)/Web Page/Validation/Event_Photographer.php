@@ -342,7 +342,7 @@ if(empty($_POST["city"]) && empty($_POST["state"]))      //City & State Validati
 </head>
 <body>
       <h1>Event Photographer Booking Form</h1><br>
-      <form method="Post" action="">
+      <form method="Post" action="Submit.php">
             <table>
                    <tr>
                        <td>

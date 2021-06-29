@@ -266,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 </head>
 <body>
 	  <h1>Apply Form</h1><br>
-      <form action="" method="post">
+      <form action="Submit.php" method="post">
       	    <table>
       	    	   <tr>
                        <td>

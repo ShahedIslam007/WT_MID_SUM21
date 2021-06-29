@@ -218,7 +218,7 @@
 
        <body>
                 <h1>Photographer Rating Form </h1>
-                     <form action="" method="post">
+                     <form action="Submit.php" method="post">
                         <table >
                             <tr>
                               <td colspan="2">

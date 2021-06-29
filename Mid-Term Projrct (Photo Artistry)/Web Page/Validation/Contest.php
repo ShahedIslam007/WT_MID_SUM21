@@ -263,7 +263,7 @@
 
        <body>
                  <h1> Contest Form </h1>
-                    <form action="" method="post">
+                    <form action="Submit.php" method="post">
                         <table >
 						    <tr>
                               <td>

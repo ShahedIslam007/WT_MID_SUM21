@@ -342,7 +342,7 @@
 </head>
 <body>
       <h1>Wedding Photographer Booking Form</h1><br>
-      <form method="Post" action="">
+      <form method="Post" action="Submit.php">
             <table>
                    <tr>
                        <td>

@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
        <body>
                 <h1>Website Feedback Form </h1>
-                    <form action="" method="post" >
+                    <form action="Submit.php" method="post" >
                         <table >
 						
 						 <tr> 
